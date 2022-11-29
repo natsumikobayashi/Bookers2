@@ -20,41 +20,61 @@
             <span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
        <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link_to "Home", root_path %>
-        </li>
         <% if user_signed_in? %>
+          <li class="nav-item">
+           <%= link_to user_path(current_user), class: "text-light" do %>
+           <i class="fas fa-home"></i>Home
+           <% end %>
+          </li>
         <li class="nav-item">
-          <%= link_to "Users", users_path %>
+         <%= link_to users_path, class: "text-light" do %>
+         <i class="fas fa-users"></i>Users
+         <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "Books", books_path %>
+         <%= link_to books_path, class: "text-light" do %>
+         <i class="fas fa-book-open"></i>Books
+         <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-        <li class="nav-item">
+         <%= link_to destroy_user_session_path, class: "text-light", method: :delete do %>
+         <i class="fas fa-sign-out-alt"></i>log out
+         <% end %>
         </li>
         <% else %>
         <li class="nav-item">
-        <%= link_to "Sign up", new_user_registration_path %>
+         <%= link_to root_path, class: "text-light" do %>
+         <i class="fas fa-home"></i>Home
+         <% end %>
+          </li>
+        <li class="nav-item">
+         <%= link_to about_path, class: "text-light" do %>
+          <i class="fas fa-solid fa-link"></i>About
+          <%end %>
         </li>
         <li class="nav-item">
-        <%= link_to "Log in", new_user_session_path %>
+         <%= link_to new_user_registration_path, class: "text-light" do %>
+         <i class="fas fa-user-plus"></i>Sign up
+         <% end %>
+        </li>
+        <li class="nav-item">
+        <%= link_to new_user_session_path, class: "text-light" do %>
+         <i class="fas fa-sign-in-alt"></i>Log in
+         <% end %>
         </li>
         <% end %>
        </ul>
       </div>
     </nav>
    </header>
-   <main class="mb-auto">
+   <main>
    <%= yield %>
    </main>
    
    <footer>
     <div class="container mt-5">
      <div class="row">
-      <div class="mx-auro">
+      <div class="mx-auto">
        <p>CopyRight Infratop.inc</p>
       </div>
      </div>
