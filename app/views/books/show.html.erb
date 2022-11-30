@@ -1,3 +1,24 @@
-<%= render 'userinfo', book: @book %>
-
-<%#=  link_to "Edit", edit_book_path(@book.id), class: 'btn btn-sm btn-success' %>
+<div class="container px-5 px-sn-0">
+ <div class="row">
+<%= render 'userinfo', book: @book, user: @user %>
+<div class="col-md-8 offset-md-1" >
+ <table class="table">
+     <thead><h2>Books detail</h2></thead>
+     <tbody>
+     <tr>
+         <td><%= image_tag @book_id.user.get_profile_image(100,100) %><br>
+         <%= link_to user_path(@book_id.user_id) do %><%= @book_id.user.name %><% end %></td>
+        <td><%= link_to book_path(@book_id) do %><%= @book_id.title %><% end %></td>
+         <td><%= @book_id.body %></td>
+         <td>
+             <% if @book_id.user == current_user %>
+             <%=  link_to "Edit", edit_book_path(@book_id), class: 'btn btn-sm btn-success' %></td>
+         <td><%= link_to "Destroy", book_path, method: :delete, class: 'btn btn-sm btn-danger' %>
+         <% end %>
+         </td>
+     </tr>
+     </tbody>
+ </table>
+</div>
+ </div>
+</div>

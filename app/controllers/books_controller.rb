@@ -7,20 +7,37 @@ class BooksController < ApplicationController
     @book = Book.new(book_params) #createするために空箱用意
     @book.user_id = current_user.id
     @book.save
+    flash[:notice] = "You have created book successfully."
     redirect_to book_path(@book.id)
   end
 
   def index
-    @book = Book.new #indexを表示するために空箱用意
+    @book = Book.new #create用の空箱
     @user = current_user
     @books=Book.all
   end
 
   def show
-    #@book = Book.find(params[:id])
+    @book = Book.new #create用の空箱
+    @book_id = Book.find(params[:id]) #投稿を並べる用
+    @user = @book_id.user
   end
   
   def edit
+    @book = Book.find(params[:id])
+  end
+  
+  def update
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    flash[:notice] = "You have updated book successfully."
+    redirect_to book_path(@book.id)
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to '/books'
   end
   
   def get_image
