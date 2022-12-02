@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :books, dependent: :destroy
   
+  validates :name, length: { minimum: 2, maximum: 20}, uniqueness: { case_sensitive: false }
+  validates :introduction, length: { maximum: 50}
+  
   has_one_attached :profile_image
   
   def get_profile_image(widht, height)
