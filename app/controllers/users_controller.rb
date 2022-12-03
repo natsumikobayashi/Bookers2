@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     user_id = params[:id].to_i
     login_user_id = current_user.id
     if(user_id != login_user_id)
-      redirect_to books_path
+      redirect_to user_path(current_user.id)
     end
     
   end
@@ -41,10 +41,11 @@ class UsersController < ApplicationController
   end
   
   def is_mathing_login_user
-    user_id = params[:id].to_i
+    user = User.find(params[:id])
+    user_id = user.id
     login_user_id = current_user.id
     if(user_id != login_user_id)
-     redirect_to user_path
+     redirect_to user_path(current_user.id)
     end
   end
   
